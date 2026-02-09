@@ -5,44 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIDDLE MUSIC | CABINET</title>
     <style>
-        body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #ffffff; color: #000000; text-transform: uppercase; }
-        header { padding: 40px 0; text-align: center; border-bottom: 4px solid #000000; }
-        header h1 { font-size: 4rem; margin: 0; letter-spacing: -2px; }
-        nav { display: flex; justify-content: center; gap: 40px; padding: 20px 0; border-bottom: 1px solid #ccc; }
-        nav a { text-decoration: none; color: #000000; font-weight: 900; font-size: 1.2rem; }
+        body { margin: 0; padding: 0; font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; background-color: #ffffff; color: #000000; text-transform: uppercase; height: 100vh; display: flex; flex-direction: column; }
+        header { padding: 20px 0; text-align: center; border-bottom: 4px solid #000000; flex-shrink: 0; }
+        header h1 { font-size: 3rem; margin: 0; letter-spacing: -2px; }
+        nav { display: flex; justify-content: center; gap: 40px; padding: 15px 0; border-bottom: 1px solid #ccc; flex-shrink: 0; }
+        nav a { text-decoration: none; color: #000000; font-weight: 900; font-size: 1.1rem; cursor: pointer; }
         nav a:hover, nav a.active { color: #ff0000; }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
         .red { color: #ff0000; }
-        .hidden { display: none; }
-
-        /* КОНТАКТЫ */
-        .public-contacts { text-align: center; margin-bottom: 40px; border: 2px solid #000; padding: 20px; }
-        .contact-row { font-size: 1.1rem; font-weight: bold; margin: 10px 0; text-transform: none; }
-        .contact-row a { color: #000; text-decoration: underline; }
+        .hidden { display: none !important; }
 
         /* ВХОД */
-        .login-wrap { background: #f4f4f4; padding: 40px; text-align: center; border: 4px solid #000; }
-        input { padding: 15px; width: 60%; border: 3px solid #000; font-size: 1.2rem; text-align: center; font-weight: bold; text-transform: uppercase; margin-bottom: 15px; }
-        .btn-main { padding: 15px 30px; background: #000; color: #fff; border: none; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-main:hover { background: #ff0000; }
+        .container-login { max-width: 500px; margin: 50px auto; padding: 40px; text-align: center; border: 5px solid #000; background: #f9f9f9; }
+        input { padding: 15px; width: 80%; border: 4px solid #000; font-size: 1.2rem; text-align: center; font-weight: bold; margin-bottom: 20px; outline: none; }
+        .btn-login { padding: 15px 40px; background: #000; color: #fff; border: none; font-size: 1.3rem; font-weight: bold; cursor: pointer; }
+        .btn-login:hover { background: #ff0000; }
 
-        /* КАБИНЕТ */
-        .cabinet { border-top: 5px solid #ff0000; padding-top: 20px; }
-        .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
-        .stat-box { background: #000; color: #fff; padding: 20px; text-align: center; }
-        .stat-box h3 { font-size: 2.5rem; margin: 0; color: #ff0000; }
+        /* КАБИНЕТ: СТРУКТУРА ПО ТВОЕМУ РИСУНКУ */
+        .cabinet-wrapper { display: flex; flex-grow: 1; border-top: 5px solid #000; }
+        
+        /* Левая панель */
+        .sidebar { width: 200px; border-right: 8px solid #000; display: flex; flex-direction: column; padding: 20px 10px; flex-shrink: 0; }
+        .sidebar-item { font-size: 2.5rem; font-weight: 900; margin-bottom: 20px; cursor: pointer; border-bottom: 4px solid #000; line-height: 1; padding-bottom: 5px; }
+        .sidebar-item:hover { color: #ff0000; }
+        .sidebar-footer { margin-top: auto; font-size: 1.2rem; font-weight: bold; border-top: 4px solid #000; padding-top: 10px; word-break: break-all; }
 
-        /* СПИСОК РЕЛИЗОВ */
-        .releases-list { border: 2px solid #000; padding: 20px; margin-bottom: 30px; }
-        .release-item { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 10px 0; font-size: 0.9rem; }
-        .status-wait { color: #ff0000; font-weight: bold; }
+        /* Основная часть с релизами */
+        .content { flex-grow: 1; padding: 40px; overflow-y: auto; background: #fff; }
+        
+        /* Кнопка загрузки сверху */
+        .upload-bar { margin-bottom: 40px; text-align: center; }
+        .btn-upload-red { background: #ff0000; color: #fff; padding: 15px 40px; text-decoration: none; font-size: 1.5rem; font-weight: 900; border: 4px solid #000; border-radius: 50px; display: inline-block; }
 
-        /* КНОПКА ДОБАВИТЬ РЕЛИЗ */
-        .upload-section { text-align: center; margin-bottom: 40px; }
-        .btn-upload { background: #ff0000; color: #fff; padding: 20px; width: 100%; display: block; text-decoration: none; font-size: 1.5rem; font-weight: 900; transition: 0.3s; box-sizing: border-box; }
-        .btn-upload:hover { background: #000; transform: scale(1.02); }
+        /* Карточка релиза (Овал) */
+        .release-oval { border: 8px solid #000; border-radius: 100px; padding: 20px 40px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; min-height: 60px; position: relative; }
+        .release-info { display: flex; flex-direction: column; }
+        .release-name { font-size: 1.8rem; font-weight: bold; margin-bottom: 5px; }
+        .artist-name { font-size: 2.2rem; font-weight: 900; }
 
-        @media (max-width: 768px) { input { width: 90%; } .stats { grid-template-columns: 1fr; } }
+        /* Статусы (Таблетки) */
+        .status-pill { border: 3px solid #000; border-radius: 50px; padding: 5px 20px; font-weight: bold; font-size: 1.1rem; text-align: center; min-width: 150px; }
+        .status-yellow { background-color: #ffd700; } /* На модерации */
+        .status-red { background-color: #ff0000; color: #fff; } /* Отклонено */
+        .status-green { background-color: #00ff00; } /* Принято */
+
+        @media (max-width: 900px) {
+            .cabinet-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 8px solid #000; box-sizing: border-box; }
+            .release-oval { flex-direction: column; border-radius: 40px; text-align: center; gap: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -51,80 +61,94 @@
         <h1>MIDDLE <span class="red">MUSIC</span></h1>
     </header>
 
-    <nav>
+    <nav id="nav-bar">
         <a href="index.html">ГЛАВНАЯ</a>
         <a href="contact.html" class="active">КОНТАКТЫ / КАБИНЕТ</a>
     </nav>
 
-    <div class="container">
+    <div id="login-page" class="container-login">
+        <h3>ВВЕДИ ID ДЛЯ ДОСТУПА</h3>
+        <input type="text" id="artist-id" placeholder="ID...">
+        <br>
+        <button class="btn-login" onclick="login()">ВОЙТИ</button>
+    </div>
 
-        <div id="public-info">
-            <div class="public-contacts">
-                <h2>СВЯЗЬ</h2>
-                <div class="contact-row">EMAIL: <a href="mailto:contact@mail.middle.v6.rocks">contact@mail.middle.v6.rocks</a></div>
-                <div class="contact-row">TG: <a href="https://t.me/lxngtme">@LXNGTME</a></div>
-            </div>
-
-            <div id="login-area" class="login-wrap">
-                <h3>ВХОД В ЛИЧНЫЙ КАБИНЕТ</h3>
-                <input type="text" id="artist-id" placeholder="ВАШ ID">
-                <br>
-                <button class="btn-main" onclick="login()">ВОЙТИ</button>
-            </div>
+    <div id="cabinet-page" class="cabinet-wrapper hidden">
+        
+        <div class="sidebar">
+            <div class="sidebar-item" onclick="alert('Вы уже здесь')">Релизы</div>
+            <div class="sidebar-item" onclick="window.location.href='https://t.me/lxngtme'">Тех.п</div>
+            <div class="sidebar-footer" id="artist-email-display">ARTIST@E.COM</div>
         </div>
 
-        <div id="cabinet-area" class="cabinet hidden">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                <h2>АРТИСТ: <span class="red" id="name-display">...</span></h2>
-                <button onclick="location.reload()" style="background:#000; color:#fff; border:none; padding:10px; cursor:pointer;">ВЫЙТИ</button>
+        <div class="content">
+            
+            <div class="upload-bar">
+                <a href="https://label.middle.v6.rocks/upload" class="btn-upload-red">+ ДОБАВИТЬ РЕЛИЗ</a>
             </div>
 
-            <div class="upload-section">
-                <a href="https://label.middle.v6.rocks/upload" class="btn-upload">+ ДОБАВИТЬ РЕЛИЗ</a>
-            </div>
+            <div id="release-list">
+                <div class="release-oval">
+                    <div class="release-info">
+                        <div class="release-name">ИМЯ РЕЛИЗА</div>
+                        <div class="artist-name" id="user-name-1">АРТИСТ</div>
+                    </div>
+                    <div class="status-pill status-yellow">НА МОДЕРАЦИИ</div>
+                </div>
 
-            <div class="stats">
-                <div class="stat-box"><h3 id="streams">0</h3><p>СТРИМЫ</p></div>
-                <div class="stat-box"><h3 id="money">$0</h3><p>БАЛАНС</p></div>
-            </div>
+                <div class="release-oval">
+                    <div class="release-info">
+                        <div class="release-name">ИМЯ РЕЛИЗА</div>
+                        <div class="artist-name" id="user-name-2">АРТИСТ</div>
+                    </div>
+                    <div class="status-pill status-red">ОТКЛОНЕНО</div>
+                </div>
 
-            <div class="releases-list">
-                <h3>ВАШИ РЕЛИЗЫ</h3>
-                <div id="release-container">
-                    <p style="text-transform: none; color: #666;">У вас пока нет активных релизов.</p>
+                <div class="release-oval">
+                    <div class="release-info">
+                        <div class="release-name">ИМЯ РЕЛИЗА</div>
+                        <div class="artist-name" id="user-name-3">АРТИСТ</div>
+                    </div>
+                    <div class="status-pill status-green">ПРИНЯТО</div>
                 </div>
             </div>
-        </div>
 
+            <div style="text-align: center; margin-top: 50px;">
+                <button onclick="location.reload()" style="background:#000; color:#fff; border:none; padding:10px 20px; font-weight:bold; cursor:pointer;">ВЫХОД</button>
+            </div>
+        </div>
     </div>
 
     <script>
+        // Имитация базы данных
         const users = {
-            "ADMIN": { name: "BOSS", streams: "∞", balance: "$9999", release: "ALBUM: GENESIS" },
-            "777": { name: "YOUNG STAR", streams: "12,500", balance: "$34.10", release: "SINGLE: NIGHT" }
+            "ADMIN": { name: "BOSS", email: "admin@middle.v6.rocks" },
+            "777": { name: "LXNGTME", email: "artist@middle.v6.rocks" },
+            "DEMO": { name: "GUEST", email: "guest@mail.com" }
         };
 
         function login() {
             const id = document.getElementById('artist-id').value.toUpperCase().trim();
-            if(users[id]) {
-                document.getElementById('name-display').innerText = users[id].name;
-                document.getElementById('streams').innerText = users[id].streams;
-                document.getElementById('money').innerText = users[id].balance;
-                
-                // Имитация появления релиза
-                document.getElementById('release-container').innerHTML = `
-                    <div class="release-item">
-                        <span>${users[id].release}</span>
-                        <span class="status-wait">НА МОДЕРАЦИИ</span>
-                    </div>
-                `;
+            const loginPage = document.getElementById('login-page');
+            const cabinetPage = document.getElementById('cabinet-page');
+            const nav = document.getElementById('nav-bar');
 
-                document.getElementById('public-info').classList.add('hidden');
-                document.getElementById('cabinet-area').classList.remove('hidden');
+            if (users[id]) {
+                // Подставляем имя во все карточки
+                document.getElementById('user-name-1').innerText = users[id].name;
+                document.getElementById('user-name-2').innerText = users[id].name;
+                document.getElementById('user-name-3').innerText = users[id].name;
+                document.getElementById('artist-email-display').innerText = users[id].email;
+
+                // Меняем экраны
+                loginPage.classList.add('hidden');
+                nav.classList.add('hidden'); // Прячем навигацию в кабинете для чистоты
+                cabinetPage.classList.remove('hidden');
             } else {
-                alert('ID НЕ НАЙДЕН');
+                alert('ID НЕ ВЕРЕН!');
             }
         }
     </script>
+
 </body>
 </html>
