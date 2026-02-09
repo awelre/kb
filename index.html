@@ -3,152 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIDDLE MUSIC | CABINET</title>
+    <title>404 | NOT FOUND</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; padding: 0; font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; background-color: #ffffff; color: #000000; text-transform: uppercase; height: 100vh; display: flex; flex-direction: column; }
-        header { padding: 20px 0; text-align: center; border-bottom: 4px solid #000000; flex-shrink: 0; }
-        header h1 { font-size: 3rem; margin: 0; letter-spacing: -2px; }
-        nav { display: flex; justify-content: center; gap: 40px; padding: 15px 0; border-bottom: 1px solid #ccc; flex-shrink: 0; }
-        nav a { text-decoration: none; color: #000000; font-weight: 900; font-size: 1.1rem; cursor: pointer; }
-        nav a:hover, nav a.active { color: #ff0000; }
-        .red { color: #ff0000; }
-        .hidden { display: none !important; }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+            color: #ff0000;
+            font-family: 'Dela Gothic One', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
 
-        /* ВХОД */
-        .container-login { max-width: 500px; margin: 50px auto; padding: 40px; text-align: center; border: 5px solid #000; background: #f9f9f9; }
-        input { padding: 15px; width: 80%; border: 4px solid #000; font-size: 1.2rem; text-align: center; font-weight: bold; margin-bottom: 20px; outline: none; }
-        .btn-login { padding: 15px 40px; background: #000; color: #fff; border: none; font-size: 1.3rem; font-weight: bold; cursor: pointer; }
-        .btn-login:hover { background: #ff0000; }
+        .error-code {
+            font-size: clamp(5rem, 20vw, 12rem);
+            line-height: 0.8;
+            margin-bottom: 20px;
+        }
 
-        /* КАБИНЕТ: СТРУКТУРА ПО ТВОЕМУ РИСУНКУ */
-        .cabinet-wrapper { display: flex; flex-grow: 1; border-top: 5px solid #000; }
-        
-        /* Левая панель */
-        .sidebar { width: 200px; border-right: 8px solid #000; display: flex; flex-direction: column; padding: 20px 10px; flex-shrink: 0; }
-        .sidebar-item { font-size: 2.5rem; font-weight: 900; margin-bottom: 20px; cursor: pointer; border-bottom: 4px solid #000; line-height: 1; padding-bottom: 5px; }
-        .sidebar-item:hover { color: #ff0000; }
-        .sidebar-footer { margin-top: auto; font-size: 1.2rem; font-weight: bold; border-top: 4px solid #000; padding-top: 10px; word-break: break-all; }
+        .error-text {
+            font-size: clamp(1rem, 5vw, 2rem);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-        /* Основная часть с релизами */
-        .content { flex-grow: 1; padding: 40px; overflow-y: auto; background: #fff; }
-        
-        /* Кнопка загрузки сверху */
-        .upload-bar { margin-bottom: 40px; text-align: center; }
-        .btn-upload-red { background: #ff0000; color: #fff; padding: 15px 40px; text-decoration: none; font-size: 1.5rem; font-weight: 900; border: 4px solid #000; border-radius: 50px; display: inline-block; }
+        .back-link {
+            margin-top: 50px;
+            color: #ff0000;
+            text-decoration: underline;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
 
-        /* Карточка релиза (Овал) */
-        .release-oval { border: 8px solid #000; border-radius: 100px; padding: 20px 40px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; min-height: 60px; position: relative; }
-        .release-info { display: flex; flex-direction: column; }
-        .release-name { font-size: 1.8rem; font-weight: bold; margin-bottom: 5px; }
-        .artist-name { font-size: 2.2rem; font-weight: 900; }
+        .back-link:hover {
+            opacity: 0.6;
+        }
 
-        /* Статусы (Таблетки) */
-        .status-pill { border: 3px solid #000; border-radius: 50px; padding: 5px 20px; font-weight: bold; font-size: 1.1rem; text-align: center; min-width: 150px; }
-        .status-yellow { background-color: #ffd700; } /* На модерации */
-        .status-red { background-color: #ff0000; color: #fff; } /* Отклонено */
-        .status-green { background-color: #00ff00; } /* Принято */
+        /* Эффект легкого дрожания для агрессивности */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
 
-        @media (max-width: 900px) {
-            .cabinet-wrapper { flex-direction: column; }
-            .sidebar { width: 100%; border-right: none; border-bottom: 8px solid #000; box-sizing: border-box; }
-            .release-oval { flex-direction: column; border-radius: 40px; text-align: center; gap: 15px; }
+        .error-code:hover {
+            animation: glitch 0.3s linear infinite;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>MIDDLE <span class="red">MUSIC</span></h1>
-    </header>
-
-    <nav id="nav-bar">
-        <a href="index.html">ГЛАВНАЯ</a>
-        <a href="contact.html" class="active">КОНТАКТЫ / КАБИНЕТ</a>
-    </nav>
-
-    <div id="login-page" class="container-login">
-        <h3>ВВЕДИ ID ДЛЯ ДОСТУПА</h3>
-        <input type="text" id="artist-id" placeholder="ID...">
-        <br>
-        <button class="btn-login" onclick="login()">ВОЙТИ</button>
+    <div class="error-code">404</div>
+    <div class="error-text">САЙТ НЕ НАЙДЕН</div>
+    
+    <div class="back-link" onclick="window.location.href='https://music.middle.v6.rocks/'">
+        ВЕРНУТЬСЯ НА ГЛАВНУЮ
     </div>
-
-    <div id="cabinet-page" class="cabinet-wrapper hidden">
-        
-        <div class="sidebar">
-            <div class="sidebar-item" onclick="alert('Вы уже здесь')">Релизы</div>
-            <div class="sidebar-item" onclick="window.location.href='https://t.me/lxngtme'">Тех.п</div>
-            <div class="sidebar-footer" id="artist-email-display">ARTIST@E.COM</div>
-        </div>
-
-        <div class="content">
-            
-            <div class="upload-bar">
-                <a href="https://label.middle.v6.rocks/upload" class="btn-upload-red">+ ДОБАВИТЬ РЕЛИЗ</a>
-            </div>
-
-            <div id="release-list">
-                <div class="release-oval">
-                    <div class="release-info">
-                        <div class="release-name">ИМЯ РЕЛИЗА</div>
-                        <div class="artist-name" id="user-name-1">АРТИСТ</div>
-                    </div>
-                    <div class="status-pill status-yellow">НА МОДЕРАЦИИ</div>
-                </div>
-
-                <div class="release-oval">
-                    <div class="release-info">
-                        <div class="release-name">ИМЯ РЕЛИЗА</div>
-                        <div class="artist-name" id="user-name-2">АРТИСТ</div>
-                    </div>
-                    <div class="status-pill status-red">ОТКЛОНЕНО</div>
-                </div>
-
-                <div class="release-oval">
-                    <div class="release-info">
-                        <div class="release-name">ИМЯ РЕЛИЗА</div>
-                        <div class="artist-name" id="user-name-3">АРТИСТ</div>
-                    </div>
-                    <div class="status-pill status-green">ПРИНЯТО</div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 50px;">
-                <button onclick="location.reload()" style="background:#000; color:#fff; border:none; padding:10px 20px; font-weight:bold; cursor:pointer;">ВЫХОД</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Имитация базы данных
-        const users = {
-            "ADMIN": { name: "BOSS", email: "admin@middle.v6.rocks" },
-            "777": { name: "LXNGTME", email: "artist@middle.v6.rocks" },
-            "DEMO": { name: "GUEST", email: "guest@mail.com" }
-        };
-
-        function login() {
-            const id = document.getElementById('artist-id').value.toUpperCase().trim();
-            const loginPage = document.getElementById('login-page');
-            const cabinetPage = document.getElementById('cabinet-page');
-            const nav = document.getElementById('nav-bar');
-
-            if (users[id]) {
-                // Подставляем имя во все карточки
-                document.getElementById('user-name-1').innerText = users[id].name;
-                document.getElementById('user-name-2').innerText = users[id].name;
-                document.getElementById('user-name-3').innerText = users[id].name;
-                document.getElementById('artist-email-display').innerText = users[id].email;
-
-                // Меняем экраны
-                loginPage.classList.add('hidden');
-                nav.classList.add('hidden'); // Прячем навигацию в кабинете для чистоты
-                cabinetPage.classList.remove('hidden');
-            } else {
-                alert('ID НЕ ВЕРЕН!');
-            }
-        }
-    </script>
 
 </body>
 </html>
